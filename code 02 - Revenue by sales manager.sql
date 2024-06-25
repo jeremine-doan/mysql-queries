@@ -8,21 +8,21 @@ SELECT
     e2.jobTitle AS title,
     SUM(p.amount) AS revenue
 FROM
-	employees AS e1
+    employees AS e1
 LEFT JOIN
-	employees AS e2
+    employees AS e2
     ON e1.reportsTo = e2.employeeNumber
 LEFT JOIN
-	customers AS c
+    customers AS c
     ON e1.employeeNumber = c.salesRepEmployeeNumber
 LEFT JOIN
-	payments AS p
+    payments AS p
     ON c.customerNumber = p.customerNumber
 WHERE
-	e2.jobTitle LIKE "%manager%"
+    e2.jobTitle LIKE "%manager%"
 GROUP BY
-	e2.employeeNumber,
+    e2.employeeNumber,
     CONCAT_WS(" ", e2.firstName, e2.lastName),
     e2.jobTitle
 ORDER BY
-	revenue DESC;
+    revenue DESC;
